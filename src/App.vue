@@ -1,15 +1,17 @@
 <template>
   <nav-bar/>
+  <alert />
   <router-view/>
 </template>
 
 <script>
+import Alert from './components/Alert.vue';
   import NavBar from "./components/Navbar.vue";
   export default{
     components: {
       NavBar,
+      Alert   
     }
-    
   }
 </script>
 
