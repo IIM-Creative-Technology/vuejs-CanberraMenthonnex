@@ -1,3 +1,17 @@
 <template>
-    <h1>Create post</h1>
+    <h1>Créer une nouvelle page de blog</h1>
+    <new-post-form/>
 </template>
+
+<script>
+    import NewPostForm from '../../components/NewPostForm.vue'
+    
+
+    
+
+   
+    export default {
+  components: { NewPostForm },
+
+    }
+</script>NewForm
