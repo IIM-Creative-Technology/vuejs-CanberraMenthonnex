@@ -18,6 +18,14 @@ import Alert from './components/Alert.vue';
 
 
 <style>
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #1C1E3D;
+}
+* {
+  font-family: sans-serif;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

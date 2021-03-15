@@ -3,8 +3,8 @@ import router from '../router/index'
 
 export default createStore({
   state: {
-    users : [],
-    connectedUser : null,
+    users : JSON.parse( localStorage.getItem("auth-users") ) || [],
+    connectedUser : JSON.parse( localStorage.getItem('auth' )),
     posts : [
       {
         title : "MyTitle",
@@ -43,6 +43,14 @@ export default createStore({
       state.connectedUser = user
     },
     /**
+     * Remove connected user
+     * 
+     * @param {*} state 
+     */
+    logout(state) {
+      state.connectedUser = null
+    },
+    /**
      * Mutate alertMessage
      * 
      * @param {*} state 
@@ -64,15 +72,26 @@ export default createStore({
      * @param {*} param1 
      */
     login(ctx, {username, password}) {
+      console.log(ctx.state.users);
       const user = ctx.state.users.find(user => user.username === username && user.password === password)
-      
+
       if (!user) {
         return ctx.commit('switchAlertDisplay', {message: "The authentification is erroned", hasError: true})
       }
 
-      localStorage.setItem("auth", {username})
+      localStorage.setItem("auth", JSON.stringify( {username} ))
       ctx.commit("connectUser", user)
       router.push({name: 'Blog'})
+    },
+    /**
+     * Logout user
+     * 
+     * @param {*} ctx 
+     */
+    logout(ctx) {
+      localStorage.removeItem("auth")
+      ctx.commit("logout")
+      router.push({ name: "Login"  })
     },
     /**
      * Register user
@@ -81,6 +100,7 @@ export default createStore({
      * @param {*} user 
      */
     register(ctx, user) {
+      localStorage.setItem("auth-users", JSON.stringify( [...ctx.state.users, user]))
       ctx.commit("registerUser", user)
     },
     /**

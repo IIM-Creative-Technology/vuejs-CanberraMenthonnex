@@ -1,5 +1,10 @@
 <template>
-    <form @submit.prevent="register">
+    <custom-form @submit="register">
+        <template #header>
+            <h1>
+                Inscription
+            </h1>
+        </template>
         <input-label v-model="username" type="text" name="username" label="Username" :hasError="usernameError"/>
         <input-label v-model="password" type="password" name="password" label="Password" :hasError="passwordError"/>
         <input-label v-model="confirmPassword" type="password" name="confirm_password" label="Confim Password" :hasError="passwordError"/>
@@ -7,18 +12,20 @@
             Déjà un compte ? Se connecter
         </router-link>
         <button>
-           S'incrire
+           S'inscrire
         </button>
-    </form>
+    </custom-form >
 </template>
 
 <script>
 import InputLabel from '../inputs/InputLabel.vue'
+import CustomForm from './CustomForm.vue'
 
 export default {
     name: "LoginForm",
     components : {
-        InputLabel
+        InputLabel,
+        CustomForm
     },
     emit :[
         "register"
@@ -44,3 +51,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>
