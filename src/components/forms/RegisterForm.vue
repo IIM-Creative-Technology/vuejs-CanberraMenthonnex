@@ -1,15 +1,14 @@
 <template>
     <form @submit.prevent="register">
-        <input-label v-model="username" type="text" name="username" label="Username"/>
+        <input-label v-model="username" type="text" name="username" label="Username" :hasError="usernameError"/>
         <input-label v-model="password" type="password" name="password" label="Password" :hasError="passwordError"/>
         <input-label v-model="confirmPassword" type="password" name="confirm_password" label="Confim Password" :hasError="passwordError"/>
         <router-link :to="{name: 'Login'}">
             Déjà un compte ? Se connecter
         </router-link>
         <button>
-            Se connecter
+           S'incrire
         </button>
-
     </form>
 </template>
 
@@ -29,17 +28,18 @@ export default {
             username : "",
             password: "",
             confirmPassword : "",
-            passwordError: false
+            passwordError: false,
+            usernameError: false,
         }
     },
     methods: {
         register() {
-            
-            if(this.password !== this.confirmPassword) {
-                return this.passwordError = true
-            }
+            this.usernameError = !this.username
+            this.passwordError = this.password !== this.confirmPassword || !this.password || !this.confirmPassword
 
-            this.$emit("register", {username : this.username, password : this.password})
+            if(!this.passwordError && !this.usernameError) {
+                this.$emit("register", {username : this.username, password : this.password})
+            }  
         }
     }
 }

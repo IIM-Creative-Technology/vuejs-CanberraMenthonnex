@@ -1,9 +1,10 @@
 import { createStore } from 'vuex'
+import router from '../router/index'
 
 export default createStore({
   state: {
     users : [],
-    connectedUser : {},
+    connectedUser : null,
     posts : [
       {
         title : "MyTitle",
@@ -64,7 +65,14 @@ export default createStore({
      */
     login(ctx, {username, password}) {
       const user = ctx.state.users.find(user => user.username === username && user.password === password)
+      
+      if (!user) {
+        return ctx.commit('switchAlertDisplay', {message: "The authentification is erroned", hasError: true})
+      }
+
+      localStorage.setItem("auth", {username})
       ctx.commit("connectUser", user)
+      router.push({name: 'Blog'})
     },
     /**
      * Register user

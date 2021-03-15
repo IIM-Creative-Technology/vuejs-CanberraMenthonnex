@@ -12,20 +12,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-export default {
-    name: "Alert",
-    computed: {
-        ...mapState({
-            alert : state => state.alertMessage
-        })
-    },
-    methods: {
-        close() {
-            this.$store.dispatch("alert")
+    import { mapState } from 'vuex'
+    export default {
+        name: "Alert",
+        computed: {
+            ...mapState({
+                alert : state => state.alertMessage
+            })
+        },
+        methods: {
+            close() {
+                this.$store.dispatch("alert")
+            }
         }
     }
-}
 </script>
 
 <style scoped>

@@ -20,15 +20,6 @@ export default {
    methods: {
     login(user) {
       this.$store.dispatch("login", user)
-      .then(() => {
-        
-        if(!user) {
-          return this.$store.dispatch("alert", {message: "Bad Authentication", hasError : true})
-        }
-
-        this.$router.push("home")
-        
-      })
     }
   }
 }
