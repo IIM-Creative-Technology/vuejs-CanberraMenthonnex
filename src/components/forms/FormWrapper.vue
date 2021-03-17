@@ -4,7 +4,13 @@
             <slot name="header"></slot>
         </header>
         <form action="" @submit.prevent="submitForm">
-            <slot></slot>    
+            <div class="form--body">
+               <slot></slot> 
+            </div>
+            <div  class="form--footer">
+                  <slot name="footer"></slot> 
+            </div>
+             
         </form>  
     </section>
 </template>
@@ -12,7 +18,7 @@
 <script>
 
 export default {
-    name: "CustomForm",
+    name: "FormWrapper",
     emits: ["submit"],
     methods: {
         submitForm() {
@@ -50,5 +56,17 @@ export default {
     }
     .form--header::after {
         bottom: 0;
+    }
+    .form--body {
+        margin: 50px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form--footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>
