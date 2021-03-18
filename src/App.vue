@@ -1,26 +1,26 @@
 <template>
-  <nav-bar/>
-  <alert />
+    <nav-bar/>
+    <alert />
 
     <router-view v-slot="{Component}">
-      <transition
-        name="fade"
-        mode="out-in"
-      >
+      <slide-transition>
         <component :is="Component"/>
-      </transition>
+      </slide-transition>
     </router-view>
 </template>
 
 <script>
-import Alert from './components/Alert.vue';
+  import Alert from './components/Alert.vue';
   import NavBar from "./components/Navbar.vue";
-  export default{
-    components: {
-      NavBar,
-      Alert   
+  import SlideTransition from './components/transitions/SlideTransition.vue';
+  
+    export default{
+      components: {
+        NavBar,
+        Alert, 
+        SlideTransition   
+      }
     }
-  }
 </script>
 
 
@@ -54,22 +54,5 @@ body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
-
-.fade-enter-active,
-.fade-leave-active  {
-  transition-duration: .5s;
-  transition-property: transform opacity;
-  transition-timing-function: ease;
-  transform: translateX(0);
-}
-
-.fade-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-.fade-enter-from {
- transform: translateX(100%);
- opacity: 0;
 }
 </style>

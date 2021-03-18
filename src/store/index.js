@@ -4,8 +4,17 @@ import router from '../router/index'
 export default createStore({
   state: {
     users : JSON.parse( localStorage.getItem("auth-users") ) || [],
-    connectedUser : JSON.parse( localStorage.getItem('auth' )),
+    connectedUser : JSON.parse( localStorage.getItem('auth')),
     posts : [
+      {
+        title : "MyTitle",
+        metaTitle : "meta-title",
+        metaDescription : "meta-description",
+        imageUrl : "https://source.unsplash.com/random",
+        content : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        author : 'Jean Durand',
+        createdAt : new Date()
+      },
       {
         title : "MyTitle",
         metaTitle : "meta-title",
@@ -21,6 +30,11 @@ export default createStore({
       hasError: false,
       display: false,
       message: ""
+    }
+  },
+  getters: {
+    getMaxOfPostPages: (state) =>  {
+      return Math.ceil(state.posts.length / 10)
     }
   },
   mutations: {
@@ -72,7 +86,6 @@ export default createStore({
      * @param {*} param1 
      */
     login(ctx, {username, password}) {
-      console.log(ctx.state.users);
       const user = ctx.state.users.find(user => user.username === username && user.password === password)
 
       if (!user) {
