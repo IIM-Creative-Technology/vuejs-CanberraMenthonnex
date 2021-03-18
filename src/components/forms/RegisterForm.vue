@@ -1,24 +1,36 @@
 <template>
-    <form @submit.prevent="register">
-        <input-label v-model="username" type="text" name="username" label="Username" :hasError="usernameError"/>
-        <input-label v-model="password" type="password" name="password" label="Password" :hasError="passwordError"/>
-        <input-label v-model="confirmPassword" type="password" name="confirm_password" label="Confim Password" :hasError="passwordError"/>
-        <router-link :to="{name: 'Login'}">
-            Déjà un compte ? Se connecter
-        </router-link>
-        <button>
-           S'incrire
-        </button>
-    </form>
+    <form-wrapper @submit="register">
+        <template #header>
+            <h1>
+                Inscription
+            </h1>
+        </template>
+        <input-label v-model="username" type="text" name="username" label="Username" :hasError="usernameError" :verticalMargin="true"/>
+        <input-label v-model="password" type="password" name="password" label="Password" :hasError="passwordError" :verticalMargin="true"/>
+        <input-label v-model="confirmPassword" type="password" name="confirm_password" label="Confim Password" :hasError="passwordError" :verticalMargin="true"/>
+        <template #footer>
+            <router-link :to="{name: 'Login'}">
+                Déjà un compte ? Se connecter
+            </router-link>
+            <submit-button :verticalMargin="true">
+                S'inscrire
+            </submit-button>
+        </template>
+        
+    </form-wrapper >
 </template>
 
 <script>
+import SubmitButton from '../buttons/SubmitButton.vue'
 import InputLabel from '../inputs/InputLabel.vue'
+import FormWrapper from './FormWrapper.vue'
 
 export default {
     name: "LoginForm",
     components : {
-        InputLabel
+        InputLabel,
+        FormWrapper,
+        SubmitButton
     },
     emit :[
         "register"

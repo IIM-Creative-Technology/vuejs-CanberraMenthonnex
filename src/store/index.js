@@ -3,9 +3,18 @@ import router from '../router/index'
 
 export default createStore({
   state: {
-    users : [],
-    connectedUser : null,
+    users : JSON.parse( localStorage.getItem("auth-users") ) || [],
+    connectedUser : JSON.parse( localStorage.getItem('auth')),
     posts : [
+      {
+        title : "MyTitle",
+        metaTitle : "meta-title",
+        metaDescription : "meta-description",
+        imageUrl : "https://source.unsplash.com/random",
+        content : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        author : 'Jean Durand',
+        createdAt : new Date()
+      },
       {
         title : "MyTitle",
         metaTitle : "meta-title",
@@ -21,6 +30,11 @@ export default createStore({
       hasError: false,
       display: false,
       message: ""
+    }
+  },
+  getters: {
+    getMaxOfPostPages: (state) =>  {
+      return Math.ceil(state.posts.length / 10)
     }
   },
   mutations: {
@@ -41,6 +55,14 @@ export default createStore({
      */
     connectUser(state, user) {
       state.connectedUser = user
+    },
+    /**
+     * Remove connected user
+     * 
+     * @param {*} state 
+     */
+    logout(state) {
+      state.connectedUser = null
     },
     /**
      * Mutate alertMessage
@@ -65,6 +87,8 @@ export default createStore({
     addPost(state, post){
       state.posts.push(post);
       alert("Mutation done")
+
+      console.log(state.posts);
     },
 
     // editPost(state, post){
@@ -81,14 +105,24 @@ export default createStore({
      */
     login(ctx, {username, password}) {
       const user = ctx.state.users.find(user => user.username === username && user.password === password)
-      
+
       if (!user) {
         return ctx.commit('switchAlertDisplay', {message: "The authentification is erroned", hasError: true})
       }
 
-      localStorage.setItem("auth", {username})
+      localStorage.setItem("auth", JSON.stringify( {username} ))
       ctx.commit("connectUser", user)
       router.push({name: 'Blog'})
+    },
+    /**
+     * Logout user
+     * 
+     * @param {*} ctx 
+     */
+    logout(ctx) {
+      localStorage.removeItem("auth")
+      ctx.commit("logout")
+      router.push({ name: "Login"  })
     },
     /**
      * Register user
@@ -97,6 +131,7 @@ export default createStore({
      * @param {*} user 
      */
     register(ctx, user) {
+      localStorage.setItem("auth-users", JSON.stringify( [...ctx.state.users, user]))
       ctx.commit("registerUser", user)
     },
     /**

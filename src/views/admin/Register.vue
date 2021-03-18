@@ -1,5 +1,4 @@
 <template>
-    <h1>Register</h1>
     <register-form @register="register"/>
 </template>
 

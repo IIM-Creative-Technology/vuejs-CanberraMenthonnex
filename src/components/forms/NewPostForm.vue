@@ -1,7 +1,7 @@
 <template>
 
     <form @submit.prevent="sendForm" action="">
-        <div>
+        <div class="create-form">
             <input-label v-model="form.title" type="text" name="title" label="Title" :hasError="titleError"/>
             <input-label v-model="form.metaTitle" type="text" name="metaTitle" label="Meta Title" :hasError="metaTitleError"/>
             <input-label v-model="form.metaDescription" type="text" name="metaDescription" label="Meta Description" :hasError="metaDescriptionError" />
@@ -64,3 +64,14 @@
         }
     }
 </script>
+
+
+<style scoped>
+
+    .create-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+</style>
