@@ -4,7 +4,7 @@
 </template>
 
 <script>
-    import NewPostForm from '../../components/NewPostForm.vue'
+    import NewPostForm from '../../components/forms/NewPostForm.vue'
     
 
     

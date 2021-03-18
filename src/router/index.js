@@ -3,7 +3,8 @@ import BlogList from '../views/admin/BlogList.vue'
 import Login from "../views/admin/Login.vue"
 import Blog from "../views/Blog.vue"
 import CreatePost from "../views/admin/CreatePost"
-
+import Register from "../views/admin/Register"
+import EditPost from "../views/admin/EditPost.vue"
 const routes = [
   {
     path: '/',
@@ -16,6 +17,12 @@ const routes = [
     component: Login
   }, 
   {
+    path: "/register",
+    name: "Register",
+    component: Register
+  },
+  
+  {
     path: "/admin/blog",
     name: 'BlogList',
     component: BlogList
@@ -24,6 +31,12 @@ const routes = [
     path: "/admin/blog/create",
     name: "CreatePost",
     component: CreatePost
+  },
+
+  {
+    path: "/admin/blog/edit",
+    name: "EditPost",
+    component: EditPost
   }
 ]
 
