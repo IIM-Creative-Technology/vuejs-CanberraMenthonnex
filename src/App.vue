@@ -11,7 +11,7 @@
 
 <script>
   import Alert from './components/Alert.vue';
-  import NavBar from "./components/Navbar.vue";
+  import NavBar from "./components/navs/Navbar.vue";
   import SlideTransition from './components/transitions/SlideTransition.vue';
   
     export default{

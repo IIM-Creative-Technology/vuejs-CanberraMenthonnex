@@ -55,6 +55,7 @@ export default {
         color: white;
         text-decoration: none;
         font-size: 1.2em;
+        margin-right: 10px;
     }
 
     .nav--cta {
@@ -64,6 +65,7 @@ export default {
         font-size: 1.2em;
         padding: 10px;
         cursor: pointer;
+        border: 2px solid white;
     }
 
 

@@ -1,6 +1,12 @@
 <template>
     <nav class="list-page-nav">
-        <button class="list-page--btn" v-for="(item, index) in arrayOfNumber" :key="index">
+        <button 
+        class="list-page--btn" 
+        :class="{'list-page--btn__selected' : item === currentPage}" 
+        v-for="(item, index) in arrayOfNumber" 
+        :key="index"
+        @click="changePage(item)"
+        >
             {{item}}
         </button>
     </nav>
@@ -9,9 +15,11 @@
 <script>
 export default {
     name : "ListPageNav",
+    emits: ["change-page"],
     props: {
         minPage: Number,
-        maxPage : Number
+        maxPage : Number,
+        currentPage: Number
     },
     computed: {
         arrayOfNumber() {
@@ -20,6 +28,11 @@ export default {
                 items.push(i)
             }
             return items
+        }
+    },
+    methods: {
+        changePage(page) {
+            this.$emit("change-page", page )
         }
     }
 }
@@ -36,5 +49,14 @@ export default {
         border: 2px solid transparent;
         margin-right: 15px;
         background-color: #64B4FF;
+        transition: .5s;
+    }
+    .list-page--btn:hover, .list-page--btn__selected {
+        border-color: white;
+        color: white;
+        cursor: pointer;
+    }
+    .list-page--btn:focus {
+        outline: none;
     }
 </style>

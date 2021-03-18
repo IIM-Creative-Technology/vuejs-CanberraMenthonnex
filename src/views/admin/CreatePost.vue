@@ -1,5 +1,4 @@
 <template>
-    <h1>Créer une nouvelle page de blog</h1>
     <new-post-form/>
 </template>
 

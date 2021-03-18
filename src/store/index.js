@@ -113,11 +113,6 @@ export default createStore({
       message: ""
     }
   },
-  getters: {
-    getMaxOfPostPages: (state) =>  {
-      return Math.ceil(state.posts.length / 10)
-    }
-  },
   mutations: {
     /**
      * Mutate users 
@@ -160,7 +155,7 @@ export default createStore({
     },
 
     /**
-     * 
+     * Add post to state
      * @param {*} state 
      * @param {*} post 
      */
