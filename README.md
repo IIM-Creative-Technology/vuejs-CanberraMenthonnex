@@ -1,6 +1,7 @@
 # vuejs-rendu
 
 ## Project : CMS in Vue.js
+
 ### Members:
 - Mathieu Raimbault
 - Canberra Menthonnex
