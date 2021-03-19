@@ -1,6 +1,7 @@
 <template>
     <section>
         <main-title>Gérer le blog</main-title>
+        <add-button/>
         <div class="blog--wrapper">
             <article-list :items="posts"/> 
         </div>
@@ -12,12 +13,14 @@
     import { mapState } from 'vuex'
     import MainTitle from "../../components/titles/MainTitle"
     import ArticleList from "../../components/lists/ArticleList"
+    import AddButton from '../../components/buttons/AddButton.vue'
 
     export default {
     name: "BlogList",
     components: {
         MainTitle,
-        ArticleList
+        ArticleList,
+        AddButton
     },
     computed: {
         ...mapState({

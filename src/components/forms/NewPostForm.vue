@@ -10,7 +10,7 @@
         <input-label v-model="form.metaTitle" type="text" name="metaTitle" label="Meta Title" :hasError="metaTitleError" :verticalMargin="true"/>
         <input-label v-model="form.metaDescription" type="text" name="metaDescription" label="Meta Description" :hasError="metaDescriptionError" :verticalMargin="true"/>
         <input-label v-model="form.imageUrl" type="text" name="imageUrl" label="Url Image" :hasError="imageUrl" :verticalMargin="true"/>
-        <input-label v-model="form.content" type="text" name="Content" label="Description" :hasError="content" :verticalMargin="true"/>
+        <input-label v-model="form.content" type="text" name="Content" label="Content" :hasError="content" :verticalMargin="true"/>
         <template #footer>
             <submit-button :verticalMargin="true">
                 Confirmer
