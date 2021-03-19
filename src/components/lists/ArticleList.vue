@@ -17,7 +17,8 @@ import ListPageNav from "../navs/ListPageNav"
 export default {
     name: "PaginatedList",
     props: {
-        items : Array
+        items : Array,
+        activeCrud: Boolean
     },
     components: {
         ArticleItem,
