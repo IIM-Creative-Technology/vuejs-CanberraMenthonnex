@@ -2,7 +2,7 @@
     <ul class="article-list">
         <transition-group name="list">
             <li v-for="(item, index) in paginatedItems" :key="index" class="article-list--item">
-                <article-item :title="item.title" :description="item.metaDescription" :miniature="item.imageUrl" />
+                <article-item :title="item.title" :description="item.metaDescription" :miniature="item.imageUrl" :active-crud="activeCrud" />
             </li>
         </transition-group>
         

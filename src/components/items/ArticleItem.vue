@@ -16,7 +16,8 @@ export default {
     props: {
         miniature : String,
         title: String,
-        description: String
+        description: String,
+        activeCrud: Boolean
     }
 }
 </script>
