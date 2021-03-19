@@ -7,6 +7,10 @@
                 {{ description }}
             </p>
         </div>
+        <div v-if="activeCrud">
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>
     </article>
 </template>
 
