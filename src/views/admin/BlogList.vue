@@ -1,9 +1,15 @@
 <template>
     <section>
         <main-title>Gérer le blog</main-title>
-        <div class="blog--wrapper">
-            <article-list :items="posts"/> 
+        <div :class="{'blog--content' : !editEnabled, 'blog--content__active-crud': editEnabled}">
+            <div class="blog--wrapper" :class="{'blog--wrapper__active-crud': editEnabled}">
+                <article-list :items="posts" active-crud="true"/> 
+            </div>
+            <div :class="{'blog--editor__active-crud': editEnabled}">
+                <router-view/>
+            </div>
         </div>
+        
     </section>
     
 </template>
@@ -17,12 +23,15 @@
     name: "BlogList",
     components: {
         MainTitle,
-        ArticleList
+        ArticleList,
     },
     computed: {
         ...mapState({
             posts : state => state.posts
-        })
+        }),
+        editEnabled() {
+            return this.$route.name === "EditPost"
+        }
     }
 
     }
@@ -31,6 +40,24 @@
 <style scoped>
     .blog--wrapper {
         width: 85%;
-        margin: 0 auto;
+    }
+    .blog--content {
+        display: flex;
+        justify-content: center;
+    }
+
+    .blog--content__active-crud {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .blog--wrapper__active-crud {
+        width: 48%;
+        height: 80vh;
+        overflow-y: auto;
+    }
+
+    .blog--editor__active-crud {
+         width: 48%;
     }
 </style>

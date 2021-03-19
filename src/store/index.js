@@ -171,7 +171,11 @@ export default createStore({
 
     // }
   },
-
+  getters: {
+    getOnePost : state =>  (id) => {
+      return state.posts[id]
+    }
+  },
   actions: {
     /**
      * Login user

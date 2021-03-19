@@ -1,18 +1,22 @@
 <template>
-    <h1>Créer une nouvelle page de blog</h1>
-    <edit-post/>
+    <post-form :post="post" @submit-post="updatePost"/>
 </template>
 
 <script>
 
-    import EditPost from '../../components/forms/EditPost.vue'
+    import PostForm from '../../components/forms/PostForm.vue'
     
-
-    
-
-   
     export default {
-        components: { EditPost },
-
+        components: {  PostForm },
+        methods: {
+            updatePost(post) {
+                this.$store.dispatch('editPost', post)
+            }
+        },
+        computed: {
+           post() {
+               return this.$store.getters.getOnePost(this.$route.params.id)
+           }
+        }
     }
 </script>

@@ -1,16 +1,16 @@
 <template>
-    <new-post-form/>
+    <post-form @submit-post="addPost"/>
 </template>
 
 <script>
-    import NewPostForm from '../../components/forms/NewPostForm.vue'
+    import PostForm from '../../components/forms/PostForm.vue'
     
-
-    
-
-   
     export default {
-  components: { NewPostForm },
-
+      components: { PostForm },
+      methods: {
+        addPost(post) {
+           this.$store.dispatch("addPost", post)
+        }
+      }
     }
-</script>NewForm
+</script>
