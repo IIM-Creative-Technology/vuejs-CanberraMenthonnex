@@ -1,7 +1,6 @@
 <template>    
     <div class="content-post">
         <h3>{{post?.title}}</h3>
-
         <img :src = "post?.imageUrl" alt="image-article" class="image-post">
         <p>{{post?.content}}</p>
         
@@ -20,7 +19,7 @@
         data(){
             return{
                 initPath : document.title,
-                post: this.$store.getters.getOnePost(this.$route.params.id)
+                post: this.$store.getters.getOnePost(this.$route.params.slug)
             }
         },
 

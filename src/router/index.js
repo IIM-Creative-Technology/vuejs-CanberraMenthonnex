@@ -16,7 +16,7 @@ const routes = [
   }, 
 
   {
-    path: "/post/:id",
+    path: "/post/:slug",
     name: "Post",
     component: Post,
 
@@ -42,7 +42,7 @@ const routes = [
     beforeEnter : withAuth,
     children: [
       {
-        path : "edit/:id",
+        path : "edit/:slug",
         component: EditPost,
         name: "EditPost"
       }
