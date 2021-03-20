@@ -5,6 +5,7 @@ import Blog from "../views/Blog.vue"
 import CreatePost from "../views/admin/CreatePost"
 import Register from "../views/admin/Register"
 import EditPost from "../views/admin/EditPost"
+import Post from "../views/Post"
 import { withAuth, withoutAuth } from '../middleware/auth'
 
 const routes = [
@@ -13,6 +14,14 @@ const routes = [
     name: 'Blog',
     component: Blog,
   }, 
+
+  {
+    path: "/post/:id",
+    name: "Post",
+    component: Post,
+
+  },
+
   {
     path: "/login",
     name : "Login",

@@ -3,6 +3,7 @@
         <main-title>Blog</main-title>
         <div class="blog--wrapper">
             <article-list :items="posts"/> 
+            
         </div>
     </section>
 </template>

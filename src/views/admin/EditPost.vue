@@ -10,7 +10,7 @@
         components: {  PostForm },
         methods: {
             updatePost(post) {
-                this.$store.dispatch('editPost', post)
+                this.$store.dispatch('editPost', {post, id:this.$route.params.id})
             }
         },  
         data() {

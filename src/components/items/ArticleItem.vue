@@ -7,7 +7,9 @@
                 <p>
                     {{ description }}
                 </p>
+                
             </div> 
+            
         </div>
         
         <div class="article-item---crud-wrapper">
@@ -55,4 +57,5 @@ export default {
         display: flex;
         align-items: center;
     }
+
 </style>

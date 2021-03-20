@@ -1,6 +1,7 @@
 <template>
     <section>
         <main-title>Gérer le blog</main-title>
+        <add-button :to="{name: 'CreatePost'}"></add-button>
         <div :class="{'blog--content' : !editEnabled, 'blog--content__active-crud': editEnabled}">
             <div class="blog--wrapper" :class="{'blog--wrapper__active-crud': editEnabled}">
                 <article-list :items="posts" :active-crud="true" @delete-post="deletePost"/> 
@@ -18,12 +19,14 @@
     import { mapState } from 'vuex'
     import MainTitle from "../../components/titles/MainTitle"
     import ArticleList from "../../components/lists/ArticleList"
+    import AddButton from "../../components/buttons/AddButton"
 
     export default {
     name: "BlogList",
     components: {
         MainTitle,
         ArticleList,
+        AddButton
     },
     methods: {
         deletePost(id) {
@@ -65,4 +68,6 @@
     .blog--editor__active-crud {
          width: 48%;
     }
+
+    
 </style>

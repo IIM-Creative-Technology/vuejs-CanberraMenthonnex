@@ -1,22 +1,26 @@
 <template>
+    <div v-if="items.length === 0">
+        <p class="article-list--empty">
+            Pas d'articles disponibles !!
+        </p>
+    </div>
     <ul class="article-list">
-        <transition-group name="list">
-            <li v-for="(item, index) in paginatedItems" :key="index" class="article-list--item">
-                <article-item 
-                :title="item.title" 
-                :description="item.metaDescription" 
-                :miniature="item.imageUrl" 
-                >
-                    <template v-if="activeCrud">
-                        <submit-button class="article-list--btn">
-                            <router-link :to="{name : 'EditPost', params: {id: index}}">Edit</router-link>
-                        </submit-button>
-                        <delete-button @click="deletePost(index)"/> 
-                    </template>
-                    
-                </article-item>
-            </li>
-        </transition-group>
+        <li v-for="item in paginatedItems" :key="item.id" class="article-list--item">
+            <article-item 
+            :title="item.title" 
+            :description="item.metaDescription" 
+            :miniature="item.imageUrl" 
+            >
+                <cta-button class="article-list--btn" :to="{name: 'Post', params: {id :item.id}}" />
+                <template v-if="activeCrud">
+                    <submit-button class="article-list--btn">
+                        <router-link :to="{name : 'EditPost', params: {id: item.id}}">Edit</router-link>
+                    </submit-button>
+                    <delete-button @click="deletePost(item.id)"/> 
+                </template>
+                
+            </article-item>
+        </li>
     </ul>
     <list-page-nav :min-page="1" :current-page="currentPage" :max-page="maxPageNumber" @change-page="changePage" />     
 </template>
@@ -26,6 +30,7 @@ import ArticleItem from '../items/ArticleItem.vue'
 import ListPageNav from "../navs/ListPageNav"
 import DeleteButton from '../buttons/DeleteButton.vue'
 import SubmitButton from '../buttons/SubmitButton'
+import CtaButton from '../buttons/CtaButton.vue'
 
 export default {
     name: "PaginatedList",
@@ -38,7 +43,8 @@ export default {
         ArticleItem,
         ListPageNav,
         SubmitButton,
-        DeleteButton
+        DeleteButton,
+        CtaButton
     },
     data() {
         return {
@@ -77,7 +83,6 @@ export default {
          * @param {number} id
          */
         deletePost(id) {
-            console.log(id);
             this.$emit("delete-post", id)
         }
     }
@@ -85,7 +90,9 @@ export default {
 </script>
 
 <style scoped>
-
+    .article-list--empty {
+        color: white;
+    }
     .article-list {
         list-style: none;
         padding: 0;
@@ -98,13 +105,7 @@ export default {
     .article-list--btn {
         margin-right: 10px;
     }  
-    
-    .list-enter-active, .list-leave-active {
-        transition: all 1s;
-    }
-    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
-        opacity: 0;
-        transform: translateY(30px);
-    }
+
+
 
 </style>

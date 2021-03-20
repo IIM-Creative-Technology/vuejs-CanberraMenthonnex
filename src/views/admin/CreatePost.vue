@@ -9,7 +9,6 @@
       components: { PostForm },
       methods: {
         addPost(post) {
-          console.log(this.$store.state.posts);
            this.$store.dispatch("addPost", {...post, author: this.$store.state.connectedUser.username})
         }
       }
