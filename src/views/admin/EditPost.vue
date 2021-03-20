@@ -10,12 +10,12 @@
         components: {  PostForm },
         methods: {
             updatePost(post) {
-                this.$store.dispatch('editPost', {post, id:this.$route.params.id})
+                this.$store.dispatch('editPost', {post, slug: this.$route.params.slug})
             }
         },  
         data() {
             return {
-                post: this.$store.getters.getOnePost(this.$route.params.id )
+                post: this.$store.getters.getOnePost(this.$route.params.slug )
             }
            
         }

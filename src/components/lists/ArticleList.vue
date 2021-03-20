@@ -11,12 +11,12 @@
             :description="item.metaDescription" 
             :miniature="item.imageUrl" 
             >
-                <cta-button class="article-list--btn" :to="{name: 'Post', params: {id :item.id}}" />
+                <cta-button class="article-list--btn" :to="{name: 'Post', params: {slug :item.slug}}" />
                 <template v-if="activeCrud">
                     <submit-button class="article-list--btn">
-                        <router-link :to="{name : 'EditPost', params: {id: item.id}}">Edit</router-link>
+                        <router-link :to="{name : 'EditPost', params: {slug: item.slug}}">Edit</router-link>
                     </submit-button>
-                    <delete-button @click="deletePost(item.id)"/> 
+                    <delete-button @click="deletePost(item.slug)"/> 
                 </template>
                 
             </article-item>

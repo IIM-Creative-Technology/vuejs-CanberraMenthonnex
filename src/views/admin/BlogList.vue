@@ -29,8 +29,8 @@
         AddButton
     },
     methods: {
-        deletePost(id) {
-            this.$store.dispatch("deletePost", id)
+        deletePost(slug) {
+            this.$store.dispatch("deletePost", slug)
         }
     },
     computed: {
