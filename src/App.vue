@@ -20,7 +20,19 @@
         NavBar,
         Alert, 
         SlideTransition,
-        AppLayout  
+        AppLayout    
+      },
+      metaInfo:{
+        title: "CMS in Vue.js",
+        titleTemplate: '%',
+        htmlAttrs: {
+          lang: 'fr-France'
+      },
+        meta: [
+          { charset: 'utf-8' },
+          { name: 'description', content: 'Project in Vue.js' },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        ]
       }
     }
 </script>

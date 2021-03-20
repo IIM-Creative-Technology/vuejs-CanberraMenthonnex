@@ -1,10 +1,12 @@
-<template>
+<template>    
     <div class="content-post">
         <h3>{{post.title}}</h3>
 
         <img :src = "post.imageUrl" alt="image-article" class="image-post">
         <p>{{post.content}}</p>
         
+
+        <p>Créer le {{post.createdAt}}</p>
         <p>Auteur : {{post.author}}</p>
     </div>
 </template>
@@ -14,12 +16,15 @@
 <script>
     export default {
         name: "Post",
-
         data(){
             return{
                 post: this.$store.getters.getOnePost(this.$route.params.id)
             }
         },
+        // beforeMount() {
+        //     console.log(this.post);
+        //     this.$route.meta.title = this.post.title
+        // }
     }
 </script>
 
