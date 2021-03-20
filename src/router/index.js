@@ -4,13 +4,24 @@ import Login from "../views/admin/Login.vue"
 import Blog from "../views/Blog.vue"
 import CreatePost from "../views/admin/CreatePost"
 import Register from "../views/admin/Register"
+import EditPost from "../views/admin/EditPost"
+import Post from "../views/Post"
 import { withAuth, withoutAuth } from '../middleware/auth'
+
 const routes = [
   {
     path: '/',
     name: 'Blog',
     component: Blog,
   }, 
+
+  {
+    path: "/post/:id",
+    name: "Post",
+    component: Post,
+
+  },
+
   {
     path: "/login",
     name : "Login",
@@ -28,7 +39,14 @@ const routes = [
     path: "/admin/blog",
     name: 'BlogList',
     component: BlogList,
-    beforeEnter : withAuth
+    beforeEnter : withAuth,
+    children: [
+      {
+        path : "edit/:id",
+        component: EditPost,
+        name: "EditPost"
+      }
+    ]
   },
   {
     path: "/admin/blog/create",

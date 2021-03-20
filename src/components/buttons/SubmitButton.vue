@@ -5,10 +5,10 @@
 </template>
 
 <script>
-export default {
-    name : "SubmitButton",
-    props: ["className", "verticalMargin", "horizontalMargin"]
-}
+    export default {
+        name : "SubmitButton",
+        props: ["className", "verticalMargin", "horizontalMargin"]
+    }
 </script>
 
 <style scoped>

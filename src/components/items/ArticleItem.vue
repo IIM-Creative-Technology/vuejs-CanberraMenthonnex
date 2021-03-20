@@ -1,27 +1,43 @@
 <template>
     <article class="article-item">
-        <img class="article-item--miniature" :src="miniature" :alt="title">
-        <div>
-            <h3 class="article-item--title">{{ title }}</h3>
-            <p>
-                {{ description }}
-            </p>
+        <div class="article-item--body">
+            <img class="article-item--miniature" :src="miniature" :alt="title">
+            <div>
+                <h3 class="article-item--title">{{ title }}</h3>
+                <p>
+                    {{ description }}
+                </p>
+                
+            </div> 
+            
         </div>
-        <div v-if="activeCrud">
-            <button>Edit</button>
-            <button>Delete</button>
+
+        
+        <router-link :to="{name: 'Post', params: {id}}" class="see-button">Consulter</router-link>
+        
+        <div v-if="activeCrud" class="article-item---crud-wrapper">
+            <submit-button class="article-item--btn">
+                 <router-link :to="{name : 'EditPost', params: {id}}" class="article-item--btn">Edit</router-link>
+            </submit-button>
+            <delete-button />
         </div>
     </article>
 </template>
 
 <script>
+import DeleteButton from '../buttons/DeleteButton.vue'
+import SubmitButton from '../buttons/SubmitButton'
+
 export default {
-    name: "ArticleItem",
+  components: { DeleteButton, SubmitButton },
+    name,
+    SeePost: "ArticleItem",
     props: {
         miniature : String,
         title: String,
         description: String,
-        activeCrud: Boolean
+        activeCrud: Boolean,
+        id: Number
     }
 }
 </script>
@@ -32,13 +48,37 @@ export default {
         padding: 20px;
         display: flex;
         height: 15vh;
+        justify-content: space-between;
+        align-items: center;
     }
-
+    .article-item--body {
+         height: 15vh;
+         display: flex;
+    }
     .article-item--miniature {
         margin-right: 30px;
+        height: 100%;
     }
 
     .article-item--title {
         text-align: left;
     }
+    
+    .article-item---crud-wrapper {
+        display: flex;
+        align-items: center;
+    }   
+    .article-item--btn {
+        margin: 0 10px;
+    }
+
+    .see-button{
+        text-decoration: none;
+        color: white;
+        background-color: #1c1e3d;
+        padding: 20px;
+        border-radius: 30px;
+        margin: auto;
+    }
+
 </style>

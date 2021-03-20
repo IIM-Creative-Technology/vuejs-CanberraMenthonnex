@@ -7,7 +7,7 @@ export default createStore({
     connectedUser : JSON.parse( localStorage.getItem('auth')),
     posts : [
       {
-        title : "MyTitle",
+        title : "MyTitle1",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -16,7 +16,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle2",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -25,7 +25,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle3",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -34,7 +34,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle4",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -43,7 +43,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle5",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -52,7 +52,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle6",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -61,7 +61,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle7",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -70,7 +70,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle8",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -79,7 +79,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle9",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -88,7 +88,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle10",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -97,7 +97,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle11",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -162,15 +162,20 @@ export default createStore({
 
     addPost(state, post){
       state.posts.push(post);
-      alert("Mutation done")
-
-      console.log(state.posts);
     },
 
-    // editPost(state, post){
-
-    // }
+    editPost(state, {post,id}){
+        state.posts[id] = post;
+    }
   },
+
+
+  getters: {
+    getOnePost : state =>  (id) => {
+      return state.posts[id]
+    }
+  },
+
 
   actions: {
     /**
@@ -233,6 +238,7 @@ export default createStore({
     },
 
     editPost(ctx, post){
+      
       ctx.commit('editPost', post);
     }
 
