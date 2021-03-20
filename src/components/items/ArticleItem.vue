@@ -10,28 +10,21 @@
             </div> 
         </div>
         
-        <div v-if="activeCrud" class="article-item---crud-wrapper">
-            <submit-button class="article-item--btn">
-                 <router-link :to="{name : 'EditPost', params: {id}}" class="article-item--btn">Edit</router-link>
-            </submit-button>
-            <delete-button />
+        <div class="article-item---crud-wrapper">
+            <slot></slot>
         </div>
     </article>
 </template>
 
 <script>
-import DeleteButton from '../buttons/DeleteButton.vue'
-import SubmitButton from '../buttons/SubmitButton'
+
 
 export default {
-  components: { DeleteButton, SubmitButton },
     name: "ArticleItem",
     props: {
         miniature : String,
         title: String,
         description: String,
-        activeCrud: Boolean,
-        id: Number
     }
 }
 </script>
@@ -61,8 +54,5 @@ export default {
     .article-item---crud-wrapper {
         display: flex;
         align-items: center;
-    }   
-    .article-item--btn {
-        margin: 0 10px;
     }
 </style>

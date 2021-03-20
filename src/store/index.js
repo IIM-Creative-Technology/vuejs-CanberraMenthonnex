@@ -16,7 +16,7 @@ export default createStore({
         createdAt : new Date()
       },
       {
-        title : "MyTitle",
+        title : "MyTitle2",
         metaTitle : "meta-title",
         metaDescription : "meta-description",
         imageUrl : "https://source.unsplash.com/random",
@@ -162,9 +162,10 @@ export default createStore({
 
     addPost(state, post){
       state.posts.push(post);
-      alert("Mutation done")
+    },
 
-      console.log(state.posts);
+    deletePost(state, id) {
+      state.posts = state.posts.filter((item, index) => index != id)
     },
 
     // editPost(state, post){
@@ -238,6 +239,10 @@ export default createStore({
 
     editPost(ctx, post){
       ctx.commit('editPost', post);
+    },
+
+    deletePost(ctx, id) {
+      ctx.commit("deletePost", id)
     }
 
   }

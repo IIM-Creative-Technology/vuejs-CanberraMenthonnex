@@ -6,12 +6,17 @@
                 :title="item.title" 
                 :description="item.metaDescription" 
                 :miniature="item.imageUrl" 
-                :active-crud="activeCrud" 
-                :id="index"
-                />
+                >
+                    <template v-if="activeCrud">
+                        <submit-button class="article-list--btn">
+                            <router-link :to="{name : 'EditPost', params: {id: index}}">Edit</router-link>
+                        </submit-button>
+                        <delete-button @click="deletePost(index)"/> 
+                    </template>
+                    
+                </article-item>
             </li>
         </transition-group>
-        
     </ul>
     <list-page-nav :min-page="1" :current-page="currentPage" :max-page="maxPageNumber" @change-page="changePage" />     
 </template>
@@ -19,16 +24,21 @@
 <script>
 import ArticleItem from '../items/ArticleItem.vue'
 import ListPageNav from "../navs/ListPageNav"
+import DeleteButton from '../buttons/DeleteButton.vue'
+import SubmitButton from '../buttons/SubmitButton'
 
 export default {
     name: "PaginatedList",
+    emits: ["delete-post"],
     props: {
         items : Array,
         activeCrud: Boolean
     },
     components: {
         ArticleItem,
-        ListPageNav
+        ListPageNav,
+        SubmitButton,
+        DeleteButton
     },
     data() {
         return {
@@ -60,6 +70,15 @@ export default {
          */
         changePage(page){
             this.currentPage = page
+        },
+        /**
+         * delete post according it id
+         * 
+         * @param {number} id
+         */
+        deletePost(id) {
+            console.log(id);
+            this.$emit("delete-post", id)
         }
     }
 }
@@ -74,7 +93,11 @@ export default {
     
     .article-list--item {
         margin-top: 15px;
-    }   
+    } 
+
+    .article-list--btn {
+        margin-right: 10px;
+    }  
     
     .list-enter-active, .list-leave-active {
         transition: all 1s;

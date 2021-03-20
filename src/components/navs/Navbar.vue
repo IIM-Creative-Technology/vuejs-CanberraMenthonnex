@@ -18,7 +18,7 @@
                 </g>
             </svg>
         </router-link>
-        <button class="nav--cta" v-if="user" @click="logout">Déconnexion</button>
+        <button class="nav--cta nav--cta__border" v-if="user" @click="logout">Déconnexion</button>
     </nav>
 
 </template>
@@ -65,6 +65,8 @@ export default {
         font-size: 1.2em;
         padding: 10px;
         cursor: pointer;
+    }
+    .nav--cta__border {
         border: 2px solid white;
     }
 
