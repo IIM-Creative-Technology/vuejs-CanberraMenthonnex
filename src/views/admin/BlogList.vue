@@ -1,13 +1,13 @@
 <template>
     <section>
         <main-title>Gérer le blog</main-title>
-        <add-button></add-button>
+        <add-button :to="{name: 'CreatePost'}"></add-button>
         <div :class="{'blog--content' : !editEnabled, 'blog--content__active-crud': editEnabled}">
             <div class="blog--wrapper" :class="{'blog--wrapper__active-crud': editEnabled}">
-                <article-list :items="posts" active-crud="true"/> 
+                <article-list :items="posts" :active-crud="true" @delete-post="deletePost"/> 
             </div>
             <div :class="{'blog--editor__active-crud': editEnabled}">
-                <router-view/>
+                <router-view :key="$route.name + ($route.params.id || '')"/>
             </div>
         </div>
         
@@ -27,6 +27,11 @@
         MainTitle,
         ArticleList,
         AddButton
+    },
+    methods: {
+        deletePost(id) {
+            this.$store.dispatch("deletePost", id)
+        }
     },
     computed: {
         ...mapState({
@@ -63,4 +68,6 @@
     .blog--editor__active-crud {
          width: 48%;
     }
+
+    
 </style>

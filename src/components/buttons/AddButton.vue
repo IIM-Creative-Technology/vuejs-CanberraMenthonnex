@@ -1,13 +1,11 @@
 <template>
-    
-        <router-link class="add-button" :to="{name: 'CreatePost'}" ></router-link>
-    
+        <router-link class="add-button" :to="to" ></router-link>
 </template>
 
 <script>
 export default {
     name: "AddButton",
-
+    props: ["to"]
 }
 </script>
 
@@ -27,34 +25,22 @@ export default {
         margin: auto;
     }
 
-    .add-button::after{
+    .add-button::after, .add-button::before{
         content: "";
         display: block;
         position: absolute;
         top: 50%;
         left: 50%;
-        
         height: 5px;
-        width: 80%;
+        width: 50%;
         border-radius: 10%;
         background: white;
-
+        border-radius: 30px;
+    }
+    .add-button::after {
         transform:  translateY(-50%) translateX(-50%) rotate(90deg);
     }
-
     .add-button::before{
-        content: "";
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        width: 80%;
-        height: 5px;
-        border-radius: 10%;
-        background: white;
-
         transform: translateX(-50%) translateY(-50%);
-        
     }
 </style>
