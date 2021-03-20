@@ -1,24 +1,26 @@
 <template>
-    <nav-bar/>
-    <alert />
+    <app-layout>
+      <router-view v-slot="{Component}">
+        <slide-transition>
+          <component :is="Component"/>
+        </slide-transition>
+      </router-view>
+    </app-layout>
 
-    <router-view v-slot="{Component}">
-      <slide-transition>
-        <component :is="Component"/>
-      </slide-transition>
-    </router-view>
 </template>
 
 <script>
   import Alert from './components/Alert.vue';
   import NavBar from "./components/navs/Navbar.vue";
   import SlideTransition from './components/transitions/SlideTransition.vue';
+  import AppLayout from "./components/layouts/AppLayout"
   
     export default{
       components: {
         NavBar,
         Alert, 
-        SlideTransition   
+        SlideTransition,
+        AppLayout    
       },
       metaInfo:{
         title: "CMS in Vue.js",
@@ -55,16 +57,4 @@ body {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

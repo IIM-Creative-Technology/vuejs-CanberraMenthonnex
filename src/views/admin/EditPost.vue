@@ -12,11 +12,12 @@
             updatePost(post) {
                 this.$store.dispatch('editPost', {post, id:this.$route.params.id})
             }
-        },
-        computed: {
-           post() {
-               return this.$store.getters.getOnePost(this.$route.params.id)
-           }
+        },  
+        data() {
+            return {
+                post: this.$store.getters.getOnePost(this.$route.params.id )
+            }
+           
         }
     }
 </script>

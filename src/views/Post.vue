@@ -16,12 +16,15 @@
 <script>
     export default {
         name: "Post",
-
         data(){
             return{
                 post: this.$store.getters.getOnePost(this.$route.params.id)
             }
         },
+        // beforeMount() {
+        //     console.log(this.post);
+        //     this.$route.meta.title = this.post.title
+        // }
     }
 </script>
 

@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "uid": "^2.0.0",
     "vue": "^3.0.0",
-    "vue-meta": "^2.4.0",
+    "vue-meta": "^3.0.0-alpha.2",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

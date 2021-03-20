@@ -9,7 +9,7 @@
       components: { PostForm },
       methods: {
         addPost(post) {
-           this.$store.dispatch("addPost", post)
+           this.$store.dispatch("addPost", {...post, author: this.$store.state.connectedUser.username})
         }
       }
     }
