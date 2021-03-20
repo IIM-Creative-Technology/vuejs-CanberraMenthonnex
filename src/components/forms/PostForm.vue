@@ -6,7 +6,7 @@
                 {{title}}
             </h1>
         </template>
-        <input-label v-model="form.title" type="text" name="title" label="Title" :hasError="titleError" :verticalMargin="true"/>
+        <input-label v-model="form.title" type="text" name="title" label="Title" :hasError="titleError" :verticalMargin="true" :disable="post?.title ? true : false"/>
         <input-label v-model="form.metaTitle" type="text" name="metaTitle" label="Meta Title" :hasError="metaTitleError" :verticalMargin="true"/>
         <input-label v-model="form.metaDescription" type="text" name="metaDescription" label="Meta Description" :hasError="metaDescriptionError" :verticalMargin="true"/>
         <input-label v-model="form.imageUrl" type="text" name="imageUrl" label="Url Image" :verticalMargin="true"/>
@@ -19,7 +19,6 @@
         
     </form-wrapper>
 </template>
-
 
 <script>
     import InputLabel from '../inputs/InputLabel.vue'
@@ -40,7 +39,7 @@
             TextareaLabel
         },
         props: {
-            post: Object
+            post: Object,
         },
         data(){
             return {
@@ -56,7 +55,6 @@
                     imageUrl: this.post?.imageUrl,
                     content : this.post?.content,
                 }
-
             }
         },
         computed: {

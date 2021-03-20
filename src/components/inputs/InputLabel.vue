@@ -1,7 +1,7 @@
 <template>
     <div class="input-label" :class="{className, 'input-label__vertical-margin' : verticalMargin, 'input-label__horizontal-margin' : horizontalMargin }">
         <label class="input-label--label" :for="name">{{ label }}</label>
-        <input class="input-label--input" :class="{'input-error' : hasError}" :type="type" :name="name" :id="name" :value="modelValue" @input="update">
+        <input class="input-label--input" :class="{'input-error' : hasError} " :type="type" :name="name" :id="name" :value="modelValue" @input="update" :disabled = "disable">
     </div>
 </template>
 
@@ -16,7 +16,8 @@
             "hasError", 
             "className",
             "verticalMargin",
-            "horizontalMargin"
+            "horizontalMargin",
+            "disable"
         ],
         methods : {
             update(e) {

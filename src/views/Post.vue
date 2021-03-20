@@ -1,13 +1,14 @@
 <template>    
     <div class="content-post">
-        <h3>{{post.title}}</h3>
+        <h3>{{post?.title}}</h3>
 
-        <img :src = "post.imageUrl" alt="image-article" class="image-post">
-        <p>{{post.content}}</p>
+        <img :src = "post?.imageUrl" alt="image-article" class="image-post">
+        <p>{{post?.content}}</p>
         
 
-        <p>Créer le {{transformDate}}</p>
-        <p>Auteur : {{post.author}}</p>
+        <p>Créer le {{post ? transformDate : ""}}</p>
+
+        <p>Auteur : {{post?.author}}</p>
     </div>
 </template>
 
@@ -18,6 +19,7 @@
         name: "Post",
         data(){
             return{
+                initPath : document.title,
                 post: this.$store.getters.getOnePost(this.$route.params.id)
             }
         },
@@ -28,9 +30,20 @@
                 let day = now.toLocaleString("default", { weekday : "long"})
                 let month = now.toLocaleString("default", {month: "long"})
                 return `${day} ${now.getDate()} ${month}`
-            }
+            },
+        },
 
+        beforeMount() { 
+            !this.post && this.$router.push({name : "Blog"})    
+        },
+        mounted() {
+            document.title = this.post?.title
+        },
+        beforeUnmount() {
+            document.title = this.initPath
         }
+
+        
     }
 </script>
 

@@ -7,7 +7,7 @@
     import PostForm from '../../components/forms/PostForm.vue'
     
     export default {
-        components: {  PostForm },
+        components: { PostForm },
         methods: {
             updatePost(post) {
                 this.$store.dispatch('editPost', {post, id:this.$route.params.id})

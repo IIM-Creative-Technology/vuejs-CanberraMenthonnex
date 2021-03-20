@@ -36,7 +36,7 @@ const routes = [
   },
   
   {
-    path: "/admin/blog",
+    path: "/admin",
     name: 'BlogList',
     component: BlogList,
     beforeEnter : withAuth,
@@ -49,7 +49,7 @@ const routes = [
     ]
   },
   {
-    path: "/admin/blog/create",
+    path: "/admin/create",
     name: "CreatePost",
     component: CreatePost,
     beforeEnter: withAuth
