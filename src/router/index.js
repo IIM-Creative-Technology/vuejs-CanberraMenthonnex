@@ -7,9 +7,6 @@ import Register from "../views/admin/Register"
 import EditPost from "../views/admin/EditPost"
 import Post from "../views/Post"
 import { withAuth, withoutAuth } from '../middleware/auth'
-import VueMeta from "vue-meta"
-
-
 
 const routes = [
   {
@@ -66,4 +63,3 @@ const router = createRouter({
 
 export default router
 
-Vue.use(VueMeta)
